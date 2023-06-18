@@ -4,3 +4,31 @@ body {
   .leaflet-container {
     background-color: rgb(178, 210, 222);
   }
+
+  .searchbox{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .searchbox .inputbox{
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    font-size: medium;
+    border-radius: 5px;
+    border: none;
+  }
+  .inputbox:focus{
+    outline: none;
+  }
+  .searchbox button{
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: medium;
+    font-weight: 600;
+    color: white;
+    border: none;
+    background-color: dodgerblue;
+  }
