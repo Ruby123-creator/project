@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect ,useMemo } from 'react'
 import { MapContainer ,GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import './MapChart.css'
@@ -17,6 +17,10 @@ const MapChart = () => {
   const [searchCountry ,setSearchCountry] = useState('')
  const [selectedCountry ,setSelectedCountry] = useState(null)
  const [countryDetails ,setCountryDetails] = useState(null)
+ const [cache, setCache] = useState({});
+
+ const cachedData = useMemo(() => cache[selectedCountry], [cache, selectedCountry]);
+
   useEffect(() => {
     if (selectedCountry) {
       console.log("hello")
@@ -27,15 +31,22 @@ const MapChart = () => {
 
 
   const fetchCountryDetails = async (countryName) => {
-    console.log("hello")
+    if (cache[countryName]) {
+      return;
+    }
     try {
       const response = await axios.get(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
       console.log(response.data)
+      setCache((prevCache) => ({
+        ...prevCache,
+        [countryName]: response.data,
+      }));
       setCountryDetails(response.data);
     } catch (error) {
       alert("No country Found")
       console.error('Error fetching country details:', error);
     }
+
   };
 
 

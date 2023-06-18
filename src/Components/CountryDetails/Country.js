@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Country = ({details}) => {
-  console.log(details)
+  // console.log(details)
     
     
   return (
