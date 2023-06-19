@@ -1,5 +1,5 @@
 import './App.css';
-import MapChart from './Components/MapChart';
+import MapChart from './Components/Map/MapChart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

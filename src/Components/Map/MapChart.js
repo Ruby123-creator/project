@@ -5,8 +5,8 @@ import "leaflet/dist/leaflet.css";
 import './MapChart.css'
 import { toast } from 'react-toastify'
 import axios from 'axios';
-import mapData from './../Data/countries.json'
-import Country from './CountryDetails/Country';
+import mapData from '../../Data/countries.json'
+import Country from '../CountryDetails/Country';
 
 //styles which provided to the GeoJson element
 const countryStyle = {
