@@ -3,6 +3,7 @@ import { useEffect ,useMemo } from 'react'
 import { MapContainer ,GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import './MapChart.css'
+import { toast } from 'react-toastify'
 import axios from 'axios';
 import mapData from './../Data/countries.json'
 import Country from './CountryDetails/Country';
@@ -46,7 +47,7 @@ const MapChart = () => {
 
     try {
       const response = await axios.get(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
-      // console.log(response.data)
+      console.log(response.data)
       //create a chache object
       setCache((prevCache) => ({
         ...prevCache,
@@ -54,8 +55,17 @@ const MapChart = () => {
       }));
       setCountryDetails(response.data);
     } catch (error) {
-      alert("No country Found")
-      console.error('Error fetching country details:', error);
+      toast.error('No country Found 🥺', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+      console.error('Error fetching country details:', error.message);
     }
 
   };
@@ -98,13 +108,13 @@ const MapChart = () => {
   };
 
   return (
-    <div style={{display:'flex' ,flexWrap:'wrap', alignItems:'center' ,justifyContent:'center' ,gap:'5'}} >
-    <div style={{width:'70vw'}}>
+    <div  style={{display:'flex' ,flexWrap:'wrap', alignItems:'center' ,justifyContent:'center' ,gap:'5'}} >
+    <div className='mapbox' style={{width:'70vw'}}>
         <div className='searchbox'>
           <input type="search" placeholder='Enter Country Name' className='inputbox' value={searchCountry} onChange={(e)=>setSearchCountry(e.target.value)} />
           <button type="submit" onClick={handleSearch}>search</button>
         </div>
-       <MapContainer zoom={2} center={[20,30]} style={{height:'80vh'}}>
+       <MapContainer className='mapContainer' zoom={2} center={[20,30]}>
        <GeoJSON
             style={countryStyle}
         
