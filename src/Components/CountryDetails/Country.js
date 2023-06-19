@@ -21,7 +21,7 @@ const Country = ({details}) => {
              <p><span>Currency</span>: {item.currencies[Object.keys(item.currencies)[0]].name}
              -{item.currencies[Object.keys(item.currencies)[0]].symbol}
              </p>
-             <a href={item.maps.openStreetMaps} target="_blank" rel="noopener noreferrer">Explore More About Country</a>
+             <a href={item.maps.googleMaps} target="_blank" rel="noopener noreferrer">Explore More About Country</a>
             </div>
           )
         })
